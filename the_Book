@@ -1,0 +1,24 @@
+import tensorflow as tf
+from tensorflow.keras import layers, models
+
+from functools import partial
+
+DefaultConv2D = partial(layers.Conv2D, kernel_size=3, activation="relu", padding="SAME")
+
+model = models.Sequential([
+      DefaultConv2D(filters=64, kernel_size=7, input_shape=[28,28,1]),
+      layers.MaxPool2D()
+      DefaultConv2D(128),
+      DefaultConv2D(128),
+      layers.MaxPool2D(),
+      DefaultConv2D(256),
+      DefaultConv2D(256),
+      layers.MaxPool2D(),
+      layers.Flatten(),
+      layers.Dense(128, activation="relu"),
+      layers.Dropout(0.5),
+      layers.Dense(64, activation="relu"),
+      layers.Dropout(0.5),
+      layers.Dense(10, activation="softmax"),
+      
+      
