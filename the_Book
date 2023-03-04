@@ -21,4 +21,4 @@ model = models.Sequential([
       layers.Dropout(0.5),
       layers.Dense(10, activation="softmax"),
       
-      
+])      
